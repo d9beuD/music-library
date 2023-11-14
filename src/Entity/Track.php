@@ -23,6 +23,11 @@ class Track
     #[ORM\JoinColumn(nullable: false)]
     private ?Album $album = null;
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
