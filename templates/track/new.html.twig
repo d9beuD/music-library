@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Track{% endblock %}
+
+{% block body %}
+    <h1>Create new Track</h1>
+
+    {{ include('track/_form.html.twig') }}
+
+    <a href="{{ path('app_track_index') }}">back to list</a>
+{% endblock %}
