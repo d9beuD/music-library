@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="container mt-5">
-        <div class="row align-items-center">
+        <div class="row align-items-center mb-2">
             <div class="col">
                 <h1>Artist index</h1>
             </div>
@@ -15,34 +15,41 @@
             </div>
         </div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Thumbnail</th>
-                    <th>Bio</th>
-                    <th>actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for artist in artists %}
-                <tr>
-                    <td>{{ artist.id }}</td>
-                    <td>{{ artist.name }}</td>
-                    <td>{{ artist.thumbnail }}</td>
-                    <td>{{ artist.bio }}</td>
-                    <td>
-                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}">show</a>
-                        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="5">no records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive border rounded">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Thumbnail</th>
+                        <th>Name</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for artist in artists %}
+                    <tr>
+                        <td>{{ artist.id }}</td>
+                        <td>
+                            <img 
+                                class="img-fluid rounded" 
+                                src="{{ artist.thumbnail }}" 
+                                alt="Artist thumbnail"
+                                style="max-height: 1.5rem;"
+                            >
+                        </td>
+                        <td>{{ artist.name }}</td>
+                        <td>
+                            <a href="{{ path('app_artist_show', {'id': artist.id}) }}">show</a>
+                            <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}
