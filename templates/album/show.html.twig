@@ -37,7 +37,7 @@
             <div class="col">
                 <h1 class="mb-0">{{ album.title }}</h1>
                 <div class="text-secondary">
-                    <p>{{ album.releaseDate ? album.releaseDate|date('d/m/Y') : '' }} • {{ album.tracks | length }} morceau•x</p>
+                    <p>{{ album.releaseDate ? album.releaseDate|date('d/m/Y') : '' }} • {{ album.tracks | length }} morceaux</p>
                 </div>
                 <button class="btn btn-danger">
                     <i class="fa-solid fa-play"></i>
@@ -50,25 +50,20 @@
             </div>
         </div>
 
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ album.id }}</td>
-                </tr>
-                <tr>
-                    <th>Title</th>
-                    <td>{{ album.title }}</td>
-                </tr>
-                <tr>
-                    <th>Thumbnail</th>
-                    <td>{{ album.thumbnail }}</td>
-                </tr>
-                <tr>
-                    <th>ReleaseDate</th>
-                    <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <ul class="bg-white border rounded list-unstyled track-list overflow-hidden">
+            {% for track in album.tracks %}
+                <li class="px-3 py-1">
+                    <div class="row">
+                        <div class="col">
+                            {{ track.title }}
+                        </div>
+                        <div class="col-auto">
+                            {{ track.readableDuration }}
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
     </div>
 {% endblock %}
