@@ -3,37 +3,46 @@
 {% block title %}Artist index{% endblock %}
 
 {% block body %}
-    <h1>Artist index</h1>
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col">
+                <h1>Artist index</h1>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_new') }}">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Thumbnail</th>
-                <th>Bio</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for artist in artists %}
-            <tr>
-                <td>{{ artist.id }}</td>
-                <td>{{ artist.name }}</td>
-                <td>{{ artist.thumbnail }}</td>
-                <td>{{ artist.bio }}</td>
-                <td>
-                    <a href="{{ path('app_artist_show', {'id': artist.id}) }}">show</a>
-                    <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_artist_new') }}">Create new</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Thumbnail</th>
+                    <th>Bio</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for artist in artists %}
+                <tr>
+                    <td>{{ artist.id }}</td>
+                    <td>{{ artist.name }}</td>
+                    <td>{{ artist.thumbnail }}</td>
+                    <td>{{ artist.bio }}</td>
+                    <td>
+                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}">show</a>
+                        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -3,9 +3,18 @@
 {% block title %}New Artist{% endblock %}
 
 {% block body %}
-    <h1>Create new Artist</h1>
+    <div class="container mt-5">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_index') }}">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="col">
+                <h1>Create new Artist</h1>
+            </div>
+        </div>
 
-    {{ include('artist/_form.html.twig') }}
-
-    <a href="{{ path('app_artist_index') }}">back to list</a>
+        {{ include('artist/_form.html.twig') }}
+    </div>
 {% endblock %}
