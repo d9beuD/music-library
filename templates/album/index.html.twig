@@ -39,7 +39,7 @@
                             >
                         </td>
                         <td>{{ album.title }}</td>
-                        <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
+                        <td>{{ album.releaseDate ? album.releaseDate|date('d/m/Y') : '' }}</td>
                         <td>
                             <a href="{{ path('app_album_show', {'id': album.id}) }}">show</a>
                             <a href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
