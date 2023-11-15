@@ -50,6 +50,11 @@ class Track
         return $this->duration;
     }
 
+    public function getReadableDuration(): string
+    {
+        return gmdate('i:s', $this->duration);
+    }
+
     public function setDuration(int $duration): static
     {
         $this->duration = $duration;
