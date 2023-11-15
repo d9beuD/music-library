@@ -3,9 +3,18 @@
 {% block title %}New Track{% endblock %}
 
 {% block body %}
-    <h1>Create new Track</h1>
+    <div class="container mt-5 mb-5">
+        <div class="row align-items-center mb-2">
+        <div class="col-auto">
+            <a class="btn btn-danger rounded-pill" href="{{ path('app_track_index') }}">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="col">
+            <h1>Create new Track</h1>
+        </div>
+        </div>
 
-    {{ include('track/_form.html.twig') }}
-
-    <a href="{{ path('app_track_index') }}">back to list</a>
+        {{ include('track/_form.html.twig') }}
+    </div>
 {% endblock %}
