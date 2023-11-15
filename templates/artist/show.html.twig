@@ -3,16 +3,12 @@
 {% block title %}Artist{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
-        <div class="row align-items-center">
-            <div class="col-auto">
+    <div class="container mt-5 mb-5">
+        <div class="row align-items-center mb-2">
+            <div class="col-auto me-auto">
                 <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_index') }}">
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
-            </div>
-
-            <div class="col">
-                <h1>Artist</h1>
             </div>
 
             <div class="col-auto">
@@ -29,25 +25,37 @@
             </div>
         </div>
 
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ artist.id }}</td>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <td>{{ artist.name }}</td>
-                </tr>
-                <tr>
-                    <th>Thumbnail</th>
-                    <td>{{ artist.thumbnail }}</td>
-                </tr>
-                <tr>
-                    <th>Bio</th>
-                    <td>{{ artist.bio }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="row mb-4">
+            <div class="col-auto">
+                <img 
+                    class="img-fluid rounded" 
+                    src="{{ artist.thumbnail }}" 
+                    alt="Artist thumbnail"
+                    style="max-height: 10rem;"
+                >
+            </div>
+
+            <div class="col">
+                <h1>{{ artist.name }}</h1>
+
+                <p class="lead text-secondary">
+                    {{ artist.bio }}
+                </p>
+            </div>
+        </div>
+
+        <h2>Releases</h2>
+        <div class="row gy-2">
+            {% for album in artist.albums %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card mx-auto mx-sm-0" style="max-width: 16rem">
+                        <img src="{{ album.thumbnail }}" alt="Album thumbnail" class="card-img-top">
+                        <div class="card-body">
+                            {{ album.title }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
