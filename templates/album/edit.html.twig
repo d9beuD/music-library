@@ -3,11 +3,23 @@
 {% block title %}Edit Album{% endblock %}
 
 {% block body %}
-    <h1>Edit Album</h1>
+    <div class="container mt-5 mb-5">
+        <div class="row align-items-center mb-2">
+            <div class="col-auto">
+                <a class="btn btn-danger rounded-pill" href="{{ path('app_album_index') }}">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
 
-    {{ include('album/_form.html.twig', {'button_label': 'Update'}) }}
+            <div class="col">
+                <h1>Edit Album</h1>
+            </div>
 
-    <a href="{{ path('app_album_index') }}">back to list</a>
+            <div class="col-auto">
+                {{ include('album/_delete_form.html.twig') }}
+            </div>
+        </div>
 
-    {{ include('album/_delete_form.html.twig') }}
+        {{ include('album/_form.html.twig', {'button_label': 'Update'}) }}
+    </div>
 {% endblock %}

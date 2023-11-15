@@ -3,32 +3,72 @@
 {% block title %}Album{% endblock %}
 
 {% block body %}
-    <h1>Album</h1>
+    <div class="container mt-5 mb-5">
+        <div class="row align-items-center mb-2">
+            <div class="col-auto me-auto">
+                <a class="btn btn-danger rounded-pill" href="{{ path('app_album_index') }}">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ album.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ album.title }}</td>
-            </tr>
-            <tr>
-                <th>Thumbnail</th>
-                <td>{{ album.thumbnail }}</td>
-            </tr>
-            <tr>
-                <th>ReleaseDate</th>
-                <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <div class="col-auto">
+                <div class="row gx-1">
+                    <div class="col-auto">
+                        <a class="btn btn-danger rounded-pill" href="{{ path('app_album_edit', {'id': album.id}) }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </div>
+                    <div class="col-auto">
+                        {{ include('album/_delete_form.html.twig') }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('app_album_index') }}">back to list</a>
+        <div class="row mb-3">
+            <div class="col-auto">
+                <img 
+                    class="img-fluid rounded thumbnail" 
+                    src="{{ album.thumbnail }}" 
+                    alt="Album thumbnail"
+                    style="height: 10rem; width: 10rem;"
+                >
+            </div>
+            <div class="col">
+                <h1 class="mb-0">{{ album.title }}</h1>
+                <div class="text-secondary">
+                    <p>{{ album.releaseDate ? album.releaseDate|date('d/m/Y') : '' }} • {{ album.tracks | length }} morceau•x</p>
+                </div>
+                <button class="btn btn-danger">
+                    <i class="fa-solid fa-play"></i>
+                    Lecture
+                </button>
+                <button class="btn btn-danger">
+                    <i class="fa-solid fa-shuffle"></i>
+                    Aléatoire
+                </button>
+            </div>
+        </div>
 
-    <a href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
-
-    {{ include('album/_delete_form.html.twig') }}
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ album.id }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ album.title }}</td>
+                </tr>
+                <tr>
+                    <th>Thumbnail</th>
+                    <td>{{ album.thumbnail }}</td>
+                </tr>
+                <tr>
+                    <th>ReleaseDate</th>
+                    <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

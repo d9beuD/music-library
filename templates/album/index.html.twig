@@ -3,37 +3,55 @@
 {% block title %}Album index{% endblock %}
 
 {% block body %}
-    <h1>Album index</h1>
+    <div class="container mt-5 mb-5">
+        <div class="row align-items-center mb-2">
+            <div class="col">
+                <h1>Album index</h1>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-danger rounded-pill" href="{{ path('app_album_new') }}">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+        </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Thumbnail</th>
-                <th>ReleaseDate</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for album in albums %}
-            <tr>
-                <td>{{ album.id }}</td>
-                <td>{{ album.title }}</td>
-                <td>{{ album.thumbnail }}</td>
-                <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('app_album_show', {'id': album.id}) }}">show</a>
-                    <a href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_album_new') }}">Create new</a>
+        <div class="table-responsive border rounded">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Thumbnail</th>
+                        <th>Title</th>
+                        <th>ReleaseDate</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for album in albums %}
+                    <tr>
+                        <td>{{ album.id }}</td>
+                        <td>
+                            <img 
+                                src="{{ album.thumbnail }}" 
+                                alt="Album thumbnail" 
+                                class="thumbnail rounded"
+                                style="height: 2rem; width: 2rem;"
+                            >
+                        </td>
+                        <td>{{ album.title }}</td>
+                        <td>{{ album.releaseDate ? album.releaseDate|date('Y-m-d') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_album_show', {'id': album.id}) }}">show</a>
+                            <a href="{{ path('app_album_edit', {'id': album.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
