@@ -6,7 +6,7 @@
     <div class="container mt-5 mb-5">
         <div class="row align-items-center mb-2">
             <div class="col">
-                <h1>Artist index</h1>
+                <h1>Artistes</h1>
             </div>
             <div class="col-auto">
                 <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_new') }}">
@@ -15,41 +15,20 @@
             </div>
         </div>
 
-        <div class="table-responsive border rounded">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Thumbnail</th>
-                        <th>Name</th>
-                        <th>actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for artist in artists %}
-                    <tr>
-                        <td>{{ artist.id }}</td>
-                        <td>
-                            <img 
-                                class="img-fluid rounded thumbnail" 
-                                src="{{ artist.thumbnail }}" 
-                                alt="Artist thumbnail"
-                                style="height: 2rem; width: 2rem;"
-                            >
-                        </td>
-                        <td>{{ artist.name }}</td>
-                        <td>
-                            <a href="{{ path('app_artist_show', {'id': artist.id}) }}">show</a>
-                            <a href="{{ path('app_artist_edit', {'id': artist.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="5">no records found</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="row gy-3 mb-3">
+            {% for artist in artists %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card mx-auto mx-sm-0 overflow-hidden" style="max-width: 16rem">
+                        <div class="card-img-top ratio ratio-1x1">
+                            <img src="{{ artist.thumbnail }}" alt="Artist thumbnail" class="object-fit-cover">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title mb-0">{{ artist.name }}</h5>
+                            <a class="stretched-link" href="{{ path('app_artist_show', {'id': artist.id}) }}"></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
