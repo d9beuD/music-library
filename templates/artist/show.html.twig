@@ -52,6 +52,7 @@
                         <img src="{{ album.thumbnail }}" alt="Album thumbnail" class="card-img-top">
                         <div class="card-body">
                             {{ album.title }}
+                            <a href="{{ path('app_album_show', {'id': album.id}) }}" class="stretched-link"></a>
                         </div>
                     </div>
                 </div>
