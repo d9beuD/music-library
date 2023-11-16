@@ -26,44 +26,49 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-auto">
+            <div class="col-sm-6 col-md-4 col-xl-3">
                 <img 
-                    class="img-fluid rounded thumbnail" 
+                    class="img-fluid rounded ratio ratio-1x1 mb-2 border shadow-sm" 
                     src="{{ album.thumbnail }}" 
                     alt="Album thumbnail"
-                    style="height: 10rem; width: 10rem;"
+                    style="max-width: 20rem;"
                 >
+                <div class="text-secondary fw-bold">
+                    <div class="text-uppercase">{{ album.tracks | length }} morceaux</div>
+                    <div>{{ album.releaseDate ? album.releaseDate|date('d/m/Y') : '' }}</div>
+                </div>
             </div>
+            
             <div class="col">
                 <h1 class="mb-0">{{ album.title }}</h1>
-                <div class="text-secondary">
-                    <p>{{ album.releaseDate ? album.releaseDate|date('d/m/Y') : '' }} • {{ album.tracks | length }} morceaux</p>
+                <h2 class="h3 text-danger mb-3">{{ album.artist.name }}</h2>
+
+                <div class="mb-4">
+                    <button class="btn btn-danger">
+                        <i class="fa-solid fa-play"></i>
+                        Lecture
+                    </button>
+                    <button class="btn btn-danger">
+                        <i class="fa-solid fa-shuffle"></i>
+                        Aléatoire
+                    </button>
                 </div>
-                <button class="btn btn-danger">
-                    <i class="fa-solid fa-play"></i>
-                    Lecture
-                </button>
-                <button class="btn btn-danger">
-                    <i class="fa-solid fa-shuffle"></i>
-                    Aléatoire
-                </button>
+
+                <ul class="bg-white border rounded list-unstyled track-list overflow-hidden">
+                    {% for track in album.tracks %}
+                        <li class="px-3 py-1">
+                            <div class="row">
+                                <div class="col">
+                                    {{ track.title }}
+                                </div>
+                                <div class="col-auto">
+                                    {{ track.readableDuration }}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
-
-        <ul class="bg-white border rounded list-unstyled track-list overflow-hidden">
-            {% for track in album.tracks %}
-                <li class="px-3 py-1">
-                    <div class="row">
-                        <div class="col">
-                            {{ track.title }}
-                        </div>
-                        <div class="col-auto">
-                            {{ track.readableDuration }}
-                        </div>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-
     </div>
 {% endblock %}
