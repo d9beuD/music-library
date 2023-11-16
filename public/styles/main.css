@@ -5,3 +5,20 @@
 .track-list > li:nth-child(even) {
     background-color: rgba(var(--bs-tertiary-bg-rgb),var(--bs-bg-opacity))!important;
 }
+
+.section-hero {
+    background: linear-gradient(
+        rgba(248, 249, 250, 0) 40%, 
+        rgba(248, 249, 250, .9) 90%, 
+        rgba(248, 249, 250, 1) 100%
+    ), url('/images/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    color: var(--bs-body-color);
+}
+
+.section-hero p {
+    text-shadow: rgba(0, 0, 0, .8) 1px 0 1rem;
+}

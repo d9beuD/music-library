@@ -4,7 +4,74 @@
 
 {% block body %}
 
-<div class="container">
-    <h1>Home</h1>
-</div>
+<section class="section-hero py-5" data-bs-theme="dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-8">
+                <h1 class="fw-bold display-3">LA BIBLIOTHÈQUE <span class="text-danger">MUSICALE</span></h1>
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti consectetur rem similique dolores possimus? Totam architecto voluptatum libero dolorem veritatis perspiciatis cumque similique distinctio veniam earum! Minus debitis voluptatibus cumque reprehenderit ullam exercitationem numquam dolores eum, distinctio aperiam facere animi.
+                </p>
+                <a href="{{ path('app_artist_index') }}" class="btn btn-lg btn-danger">
+                    Voir les artistes
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <h1 class="mb-4">Une nouvelle manière de découvrir</h1>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="display-2 text-danger">
+                    <i class="fa-solid fa-list-music"></i>
+                </div>
+                <h2 class="h4">Lorem, ipsum dolor.</h2>
+                <p>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam molestias mollitia pariatur earum maiores unde accusamus nemo deserunt sit assumenda.
+                </p>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="display-2 text-danger">
+                    <i class="fa-solid fa-head-side-headphones"></i>
+                </div>
+                <h2 class="h4">Lorem, ipsum dolor.</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, perferendis! At perspiciatis laudantium, eaque quasi aut iusto labore cupiditate perferendis nesciunt sapiente ut? Sequi, repudiandae.
+                </p>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="display-2 text-danger">
+                    <i class="fa-solid fa-volume-high"></i>
+                </div>
+                <h2 class="h4">Lorem, ipsum dolor.</h2>
+                <p>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem perspiciatis, quidem eum labore maiores et, corporis dolores accusantium molestiae officia sunt sit commodi.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5" style="background-color: var(--bs-gray-200);">
+    <div class="container">
+        <h1>Contribuez au projet</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime vel, ipsam mollitia exercitationem repudiandae expedita ex eveniet id sunt molestiae. Possimus officia tempore enim autem iusto similique eos animi eius.
+        </p>
+        <button class="btn btn-danger">
+            <i class="fa-solid fa-file-signature"></i>
+            Créer un compte
+        </button>
+        <button class="btn btn-danger">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            J'ai déjà un compte
+        </button>
+    </div>
+</section>
 {% endblock %}
