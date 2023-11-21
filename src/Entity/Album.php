@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AlbumRepository::class)]
 class Album
 {
+    const TYPES = ['Album', 'EP', 'Single'];
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -31,6 +33,9 @@ class Album
     #[ORM\ManyToOne(inversedBy: 'albums')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Artist $artist = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $type = 0;
 
     public function __construct()
     {
@@ -121,6 +126,23 @@ class Album
     public function setArtist(?Artist $artist): static
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function getTypeLabel(): string
+    {
+        return self::TYPES[$this->type];
+    }
+
+    public function setType(int $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

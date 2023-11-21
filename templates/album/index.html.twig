@@ -25,7 +25,9 @@
                         <div class="card-body">
                             <h5 class="card-title mb-0">{{ album.title }}</h5>
                             <a class="stretched-link" href="{{ path('app_album_show', {'id': album.id}) }}"></a>
-                            <p class="text-secondary mb-0">{{ album.releaseDate ? album.releaseDate|date('Y') : '' }}</p>
+                            <p class="text-secondary mb-0">
+                                {{ album.releaseDate ? album.releaseDate|date('Y') : '' }} • {{ album.typeLabel }}
+                            </p>
                         </div>
                     </div>
                 </div>
