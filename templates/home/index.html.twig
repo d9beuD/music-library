@@ -64,14 +64,16 @@
         <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime vel, ipsam mollitia exercitationem repudiandae expedita ex eveniet id sunt molestiae. Possimus officia tempore enim autem iusto similique eos animi eius.
         </p>
-        <a href="{{ path('app_register') }}" class="btn btn-danger">
-            <i class="fa-solid fa-file-signature"></i>
-            Créer un compte
-        </a>
-        <a href="{{ path('app_login') }}" class="btn btn-danger">
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            J'ai déjà un compte
-        </a>
+        {% if not is_granted('IS_AUTHENTICATED') %}
+            <a href="{{ path('app_register') }}" class="btn btn-danger">
+                <i class="fa-solid fa-file-signature"></i>
+                Créer un compte
+            </a>
+            <a href="{{ path('app_login') }}" class="btn btn-danger">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                J'ai déjà un compte
+            </a>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
