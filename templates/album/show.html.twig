@@ -71,7 +71,10 @@
                 <ul class="bg-white border rounded list-unstyled track-list overflow-hidden mb-0">
                     {% for track in album.tracks %}
                         <li class="px-3 py-1">
-                            <div class="row align-items-center">
+                            <div class="row align-items-center gx-2">
+                                <div class="col-auto">
+                                    <i class="fa-solid fa-play text-danger cursor-pointer"></i>
+                                </div>
                                 <div class="col">
                                     <div>
                                         {{ track.title }}
