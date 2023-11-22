@@ -61,7 +61,15 @@
                         <li class="px-3 py-1">
                             <div class="row">
                                 <div class="col">
-                                    {{ track.title }}
+                                    <div>
+                                        {{ track.title }}
+                                    </div>
+
+                                    {% if track.featuring|length %}
+                                        <div class="small text-secondary">
+                                            feat. {{ track.featuring|join(',')}}
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-auto">
                                     {{ track.readableDuration }}
