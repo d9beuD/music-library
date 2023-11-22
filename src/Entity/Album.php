@@ -146,4 +146,22 @@ class Album
 
         return $this;
     }
+
+    public function getDuration(): int
+    {
+        return array_reduce($this->tracks->toArray(), function ($carry, $item) {
+            return $carry + $item->getDuration();
+        }, 0);
+    }
+
+    public function getReadableDuration(): string
+    {
+        $duration = $this->getDuration();
+        $moreThanOneHour = $duration >= (60 * 60);
+
+        return gmdate(
+            $moreThanOneHour ? 'G:i:s' : 'i:s',
+            $duration
+        );
+    }
 }

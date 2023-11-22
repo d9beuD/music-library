@@ -68,7 +68,7 @@
                     </button>
                 </div>
 
-                <ul class="bg-white border rounded list-unstyled track-list overflow-hidden">
+                <ul class="bg-white border rounded list-unstyled track-list overflow-hidden mb-0">
                     {% for track in album.tracks %}
                         <li class="px-3 py-1">
                             <div class="row align-items-center">
@@ -90,6 +90,10 @@
                         </li>
                     {% endfor %}
                 </ul>
+
+                <div class="text-secondary">
+                    Durée totale : {{ album.readableDuration }}
+                </div>
             </div>
         </div>
     </div>
