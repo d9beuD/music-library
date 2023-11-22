@@ -62,7 +62,13 @@ class Track
 
     public function getReadableDuration(): string
     {
-        return gmdate('i:s', $this->duration);
+        $duration = $this->getDuration();
+        $moreThanOneHour = $duration >= (60 * 60);
+
+        return gmdate(
+            $moreThanOneHour ? 'G:i:s' : 'i:s',
+            $duration
+        );
     }
 
     public function setDuration(int $duration): static
