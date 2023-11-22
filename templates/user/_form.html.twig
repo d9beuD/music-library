@@ -1,0 +1,13 @@
+{{ form_start(form) }}
+    <div class="row">
+        <div class="col-sm-6">
+            {{ form_row(form.firstname) }}
+        </div>
+        <div class="col-sm-6">
+            {{ form_row(form.name) }}
+        </div>
+    </div>
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword) }}
+    <button class="btn btn-danger">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
