@@ -15,6 +15,7 @@ class TrackType extends AbstractType
             ->add('title')
             ->add('duration')
             ->add('album')
+            ->add('featuring')
         ;
     }
 
