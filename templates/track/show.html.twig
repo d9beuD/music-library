@@ -63,6 +63,10 @@
                         <th>Album</th>
                         <td>{{ track.album.title }}</td>
                     </tr>
+                    <tr>
+                        <th>Featuring</th>
+                        <td>{{ track.featuring|join(', ') }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
