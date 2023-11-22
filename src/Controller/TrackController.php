@@ -25,6 +25,8 @@ class TrackController extends AbstractController
     #[Route('/new', name: 'app_track_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
         $track = new Track();
         $form = $this->createForm(TrackType::class, $track);
         $form->handleRequest($request);
@@ -53,6 +55,8 @@ class TrackController extends AbstractController
     #[Route('/{id}/edit', name: 'app_track_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Track $track, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+
         $form = $this->createForm(TrackType::class, $track);
         $form->handleRequest($request);
 
@@ -71,6 +75,8 @@ class TrackController extends AbstractController
     #[Route('/{id}', name: 'app_track_delete', methods: ['POST'])]
     public function delete(Request $request, Track $track, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+        
         if ($this->isCsrfTokenValid('delete'.$track->getId(), $request->request->get('_token'))) {
             $entityManager->remove($track);
             $entityManager->flush();

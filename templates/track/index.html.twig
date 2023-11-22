@@ -8,11 +8,14 @@
             <div class="col">
                 <h1>Track index</h1>
             </div>
-            <div class="col-auto">
-                <a class="btn btn-danger rounded-pill" href="{{ path('app_track_new') }}">
-                    <i class="fa-solid fa-plus"></i>
-                </a>
-            </div>
+
+            {% if is_granted('IS_AUTHENTICATED')  %}
+                <div class="col-auto">
+                    <a class="btn btn-danger rounded-pill" href="{{ path('app_track_new') }}">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                </div>
+            {% endif %}
         </div>
 
         <div class="table-responsive border rounded">
@@ -33,7 +36,9 @@
                         <td>{{ track.readableDuration }}</td>
                         <td>
                             <a href="{{ path('app_track_show', {'id': track.id}) }}">show</a>
-                            <a href="{{ path('app_track_edit', {'id': track.id}) }}">edit</a>
+                            {% if is_granted('IS_AUTHENTICATED')  %}
+                                <a href="{{ path('app_track_edit', {'id': track.id}) }}">edit</a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% else %}

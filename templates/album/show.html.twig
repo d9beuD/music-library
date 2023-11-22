@@ -10,19 +10,21 @@
                     <i class="fa-solid fa-arrow-left"></i>
                 </a>
             </div>
-
-            <div class="col-auto">
-                <div class="row gx-1">
-                    <div class="col-auto">
-                        <a class="btn btn-danger rounded-pill" href="{{ path('app_album_edit', {'id': album.id}) }}">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                    </div>
-                    <div class="col-auto">
-                        {{ include('album/_delete_form.html.twig') }}
+            
+            {% if is_granted('IS_AUTHENTICATED')  %}
+                <div class="col-auto">
+                    <div class="row gx-1">
+                        <div class="col-auto">
+                            <a class="btn btn-danger rounded-pill" href="{{ path('app_album_edit', {'id': album.id}) }}">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        </div>
+                        <div class="col-auto">
+                            {{ include('album/_delete_form.html.twig') }}
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
 
         <div class="row mb-3">

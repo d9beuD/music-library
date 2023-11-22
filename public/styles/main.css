@@ -22,3 +22,9 @@
 .section-hero p {
     text-shadow: rgba(0, 0, 0, .8) 1px 0 1rem;
 }
+
+.form-centered {
+    max-width: 30rem;
+    margin-right: auto;
+    margin-left: auto;
+}

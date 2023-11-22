@@ -8,11 +8,13 @@
             <div class="col">
                 <h1>Artistes</h1>
             </div>
-            <div class="col-auto">
-                <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_new') }}">
-                    <i class="fa-solid fa-plus"></i>
-                </a>
-            </div>
+            {% if is_granted('IS_AUTHENTICATED') %}
+                <div class="col-auto">
+                    <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_new') }}">
+                        <i class="fa-solid fa-plus"></i>
+                    </a>
+                </div>
+            {% endif %}
         </div>
 
         <div class="row gy-3 mb-3">
