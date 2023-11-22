@@ -53,7 +53,9 @@
                     <div class="card mx-auto mx-sm-0" style="max-width: 16rem">
                         <img src="{{ album.thumbnail }}" alt="Album thumbnail" class="card-img-top">
                         <div class="card-body">
-                            {{ album.title }}
+                            <h3 class="h5 card-title mb-0">{{ album.title }}</h3>
+                            {{ album.releaseDate ? album.releaseDate|date('Y') : '' }} 
+                            <span class="badge rounded-pill text-bg-danger">{{ album.typeLabel }}</span>
                             <a href="{{ path('app_album_show', {'id': album.id}) }}" class="stretched-link"></a>
                         </div>
                     </div>

@@ -42,7 +42,12 @@
             </div>
             
             <div class="col">
-                <h1 class="mb-0">{{ album.title }}</h1>
+                <h1 class="mb-0">
+                    {{ album.title }}
+                    <small>
+                        <span class="badge rounded-pill text-bg-danger">{{ album.typeLabel }}</span>
+                    </small>
+                </h1>
                 <h2 class="h3 text-danger mb-3">{{ album.artist.name }}</h2>
 
                 <div class="mb-4">
