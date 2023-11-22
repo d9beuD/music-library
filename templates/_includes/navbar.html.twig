@@ -30,8 +30,8 @@
 				</li>
 			</ul>
 
-			{% if is_granted('IS_AUTHENTICATED') %}
-				<ul class="navbar-nav" data-bs-theme="light">
+			<ul class="navbar-nav" data-bs-theme="light">
+				{% if is_granted('IS_AUTHENTICATED') %}
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
 							<i class="fa-solid fa-circle-user"></i>
@@ -46,8 +46,15 @@
 							</li>
 						</ul>
 					</li>
-				</ul>
-			{% endif %}
+				{% else %}
+					<li class="nav-item">
+						<a href="{{ path('app_login') }}" class="nav-link active">
+							<i class="fa-solid fa-arrow-right-to-bracket"></i>
+							Se connecter
+						</a>
+					</li>
+				{% endif %}
+			</ul>
 		</div>
 	</div>
 </nav>
