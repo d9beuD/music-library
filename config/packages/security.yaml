@@ -22,6 +22,7 @@ security:
                 check_path: app_login
                 username_parameter: login[email]
                 password_parameter: login[password]
+                default_target_path: app_home
 
             logout:
                 path: app_logout
