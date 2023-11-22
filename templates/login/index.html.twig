@@ -8,7 +8,7 @@
             <h1>Se connecter</h1>
 
             {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
             
             {{ form_start(form, { action: path('app_login') }) }}
