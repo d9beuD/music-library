@@ -28,9 +28,13 @@ class Artist
     #[ORM\OneToMany(mappedBy: 'artist', targetEntity: Album::class, orphanRemoval: true)]
     private Collection $albums;
 
+    #[ORM\ManyToMany(targetEntity: Track::class, mappedBy: 'featuring')]
+    private Collection $featurings;
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
+        $this->featurings = new ArrayCollection();
     }
 
     public function __toString()
@@ -104,6 +108,33 @@ class Artist
             if ($album->getArtist() === $this) {
                 $album->setArtist(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Track>
+     */
+    public function getFeaturings(): Collection
+    {
+        return $this->featurings;
+    }
+
+    public function addFeaturing(Track $featuring): static
+    {
+        if (!$this->featurings->contains($featuring)) {
+            $this->featurings->add($featuring);
+            $featuring->addFeaturing($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeaturing(Track $featuring): static
+    {
+        if ($this->featurings->removeElement($featuring)) {
+            $featuring->removeFeaturing($this);
         }
 
         return $this;
