@@ -47,7 +47,7 @@
         </div>
 
         <h2>Releases</h2>
-        <div class="row gy-2">
+        <div class="row gy-2 mb-4">
             {% for album in artist.albums %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="card mx-auto mx-sm-0" style="max-width: 16rem">
@@ -63,6 +63,27 @@
             {% else %}
                 <div class="col">
                     <div class="alert alert-info">Il n'y a pas encore de release.</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <h2>Apparaît dans</h2>
+        <div class="row gy-2 mb-4">
+            {% for track in artist.featurings %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="card mx-auto mx-sm-0" style="max-width: 16rem">
+                        <img src="{{ track.album.thumbnail }}" alt="Album thumbnail" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="h5 card-title mb-0">{{ track.title }}</h3>
+                            {{ track.album.releaseDate ? track.album.releaseDate|date('Y') : '' }} 
+                            <span class="badge rounded-pill text-bg-danger">{{ track.album.typeLabel }}</span>
+                            <a href="{{ path('app_track_show', {'id': track.id}) }}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="col">
+                    <div class="alert alert-info">L'artiste n'apparait dans aucun autre morceau.</div>
                 </div>
             {% endfor %}
         </div>
