@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TrackRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TrackRepository::class)]
@@ -22,6 +24,14 @@ class Track
     #[ORM\ManyToOne(inversedBy: 'tracks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Album $album = null;
+
+    #[ORM\ManyToMany(targetEntity: Artist::class, inversedBy: 'featurings')]
+    private Collection $featuring;
+
+    public function __construct()
+    {
+        $this->featuring = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -70,6 +80,30 @@ class Track
     public function setAlbum(?Album $album): static
     {
         $this->album = $album;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Artist>
+     */
+    public function getFeaturing(): Collection
+    {
+        return $this->featuring;
+    }
+
+    public function addFeaturing(Artist $featuring): static
+    {
+        if (!$this->featuring->contains($featuring)) {
+            $this->featuring->add($featuring);
+        }
+
+        return $this;
+    }
+
+    public function removeFeaturing(Artist $featuring): static
+    {
+        $this->featuring->removeElement($featuring);
 
         return $this;
     }
