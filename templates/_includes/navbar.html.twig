@@ -44,6 +44,14 @@
 									Profil
 								</a>
 							</li>
+							{% if is_granted('ROLE_ADMIN') %}
+								<li>
+									<a href="{{ path('app_user_index') }}" class="dropdown-item">
+										<i class="fa-solid fa-fw fa-users"></i>
+										Utilisateurs
+									</a>
+								</li>
+							{% endif %}
 							<li>
 								<a href="{{ path('app_logout') }}" class="dropdown-item">
 									<i class="fa-solid fa-fw fa-power-off"></i>
