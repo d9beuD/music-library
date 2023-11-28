@@ -64,7 +64,7 @@
         <p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime vel, ipsam mollitia exercitationem repudiandae expedita ex eveniet id sunt molestiae. Possimus officia tempore enim autem iusto similique eos animi eius.
         </p>
-        {% if not is_granted('IS_AUTHENTICATED') %}
+        {% if not is_granted('ROLE_USER') %}
             <a href="{{ path('app_register') }}" class="btn btn-danger">
                 <i class="fa-solid fa-file-signature"></i>
                 Créer un compte

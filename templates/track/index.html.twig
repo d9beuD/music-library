@@ -9,7 +9,7 @@
                 <h1>Track index</h1>
             </div>
 
-            {% if is_granted('IS_AUTHENTICATED')  %}
+            {% if is_granted('ROLE_USER')  %}
                 <div class="col-auto">
                     <a class="btn btn-danger rounded-pill" href="{{ path('app_track_new') }}">
                         <i class="fa-solid fa-plus"></i>
@@ -40,7 +40,7 @@
                         <td>{{ track.readableDuration }}</td>
                         <td>
                             <a href="{{ path('app_track_show', {'id': track.id}) }}">show</a>
-                            {% if is_granted('IS_AUTHENTICATED')  %}
+                            {% if is_granted('ROLE_ADMIN')  %}
                                 <a href="{{ path('app_track_edit', {'id': track.id}) }}">edit</a>
                             {% endif %}
                         </td>

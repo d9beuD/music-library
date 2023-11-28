@@ -3,11 +3,43 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <div class="container my-5 mb-2">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <a class="btn btn-danger rounded-pill" href="{{ path('app_user_index') }}">
+                    <i class="fa-solid fa-long-arrow-left"></i>
+                </a>
+            </div>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+            <div class="col">
+                <h1>Edit User</h1>
+            </div>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
+            <div class="col-auto">
+                <div class="row gx-1">
+                    {% if user.roles|hasRole('ROLE_ADMIN') %}
+                        <div class="col-auto">
+                            <a href="{{ path('app_user_unmake_admin', { id: user.id}) }}" class="btn btn-danger rounded-pill">
+                                <i class="fa-solid fa-shield-slash"></i>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-auto">
+                            <a href="{{ path('app_user_make_admin', { id: user.id}) }}" class="btn btn-danger rounded-pill">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </a>
+                        </div>
+                    {% endif %}
 
-    {{ include('user/_delete_form.html.twig') }}
+                    <div class="col-auto">
+                        {{ include('user/_delete_form.html.twig') }}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    </div>
 {% endblock %}

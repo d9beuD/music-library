@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/user')]
 class UserController extends AbstractController
@@ -77,5 +78,25 @@ class UserController extends AbstractController
         }
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/make/admin', name: 'app_user_make_admin')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function makeAdmin(User $user, EntityManagerInterface $entityManager): Response
+    {
+        $user->setRoles(array_unique([...$user->getRoles(), 'ROLE_ADMIN']));
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_user_index');
+    }
+
+    #[Route('/{id}/unmake/admin', name: 'app_user_unmake_admin')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function unmakeAdmin(User $user, EntityManagerInterface $entityManager): Response
+    {
+        $user->setRoles(array_diff($user->getRoles(), ['ROLE_ADMIN', 'ROLE_SUPER_ADMIN']));
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_user_index');
     }
 }
