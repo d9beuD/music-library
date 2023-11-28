@@ -31,7 +31,7 @@
 			</ul>
 
 			<ul class="navbar-nav" data-bs-theme="light">
-				{% if is_granted('IS_AUTHENTICATED') %}
+				{% if is_granted('ROLE_USER') %}
 					<li class="nav-item dropdown">
 						<a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
 							<i class="fa-solid fa-circle-user"></i>

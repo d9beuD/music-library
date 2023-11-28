@@ -8,7 +8,7 @@
             <div class="col">
                 <h1>Artistes</h1>
             </div>
-            {% if is_granted('IS_AUTHENTICATED') %}
+            {% if is_granted('ROLE_USER') %}
                 <div class="col-auto">
                     <a class="btn btn-danger rounded-pill" href="{{ path('app_artist_new') }}">
                         <i class="fa-solid fa-plus"></i>

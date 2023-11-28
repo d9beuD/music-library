@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/artist')]
 class ArtistController extends AbstractController
@@ -23,6 +24,7 @@ class ArtistController extends AbstractController
     }
 
     #[Route('/new', name: 'app_artist_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
@@ -52,6 +54,7 @@ class ArtistController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_artist_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Artist $artist, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
@@ -71,9 +74,10 @@ class ArtistController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_artist_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Artist $artist, EntityManagerInterface $entityManager): Response
     {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         
         if ($this->isCsrfTokenValid('delete'.$artist->getId(), $request->request->get('_token'))) {
             $entityManager->remove($artist);
